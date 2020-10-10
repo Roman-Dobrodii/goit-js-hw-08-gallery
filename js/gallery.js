@@ -1,3 +1,12 @@
+// Разбей задание на несколько подзадач:
+// Создание и рендер разметки по массиву данных и предоставленному шаблону.
+// Реализация делегирования на галерее ul.js-gallery и получение url большого изображения.
+// Открытие модального окна по клику на элементе галереи.
+// Подмена значения атрибута src элемента img.lightbox__image.
+// Закрытие модального окна по клику на кнопку button[data-action="close-lightbox"].
+// Очистка значения атрибута src элемента img.lightbox__image.Это необходимо для того,
+// чтобы при следующем открытии модального окна, пока грузится изображение, мы не видели предыдущее.
+
 import imagesArr from './gallery-items.js';
 // console.log(imagesArr);
 
@@ -40,10 +49,25 @@ function onClickGalleryCard(evt) {
   }
 
   lightBox.classList.add('is-open');
-  const linkLightBoxImage = evt.target.dataset.source;
-  lightBoxImage.src = linkLightBoxImage;
+  lightBoxImage.src = evt.target.dataset.source;
+  lightBoxImage.alt = evt.target.alt;
 }
 
-function onCloseModal() {
+function onCloseModal(evt) {
+evt.preventDefault();
+  if (evt.target.nodeName === 'IMG') {
+    return;
+  }
+
   lightBox.classList.remove('is-open');
+  lightBoxImage.removeAttribute('src');
+  lightBoxImage.removeAttribute("alt");
 }
+
+
+
+// Дополнительно
+// Следующий функционал не обязателен при сдаче задания, но будет хорошей практикой по работе с событиями.
+// Закрытие модального окна по клику на div.lightbox__overlay.
+// Закрытие модального окна по нажатию клавиши ESC.
+// Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
