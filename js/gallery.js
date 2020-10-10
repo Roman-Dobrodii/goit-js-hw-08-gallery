@@ -48,23 +48,31 @@ function onClickGalleryCard(evt) {
     return;
   }
 
+  window.addEventListener('keydown', onEscapeKeyPress)
+
   lightBox.classList.add('is-open');
   lightBoxImage.src = evt.target.dataset.source;
   lightBoxImage.alt = evt.target.alt;
 }
 
 function onCloseModal(evt) {
-evt.preventDefault();
+  evt.preventDefault();
   if (evt.target.nodeName === 'IMG') {
     return;
   }
+
+  window.removeEventListener('keydown', onEscapeKeyPress)
 
   lightBox.classList.remove('is-open');
   lightBoxImage.removeAttribute('src');
   lightBoxImage.removeAttribute("alt");
 }
 
-
+function onEscapeKeyPress(evt) {
+  if (evt.code === 'Escape') {
+    onCloseModal(evt)
+  }
+}
 
 // Дополнительно
 // Следующий функционал не обязателен при сдаче задания, но будет хорошей практикой по работе с событиями.
