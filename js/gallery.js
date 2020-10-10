@@ -14,12 +14,14 @@ const galleryMarkup = createGalleryMarkup(imagesArr);
 const galleryContainer = document.querySelector('.js-gallery');
 const lightBox = document.querySelector('.lightbox');
 const lightBoxImage = document.querySelector('.lightbox__image');
+const closeBtn = document.querySelector('.lightbox__button');
+
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
 galleryContainer.addEventListener('click', onClickGalleryCard);
 
-lightBox.addEventListener('click', onCloseModal);
+closeBtn.addEventListener('click', onCloseModal);
 
 function createGalleryMarkup(imagesArr) {
   return imagesArr
