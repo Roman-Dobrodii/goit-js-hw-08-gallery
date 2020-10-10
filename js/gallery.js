@@ -15,13 +15,14 @@ const galleryContainer = document.querySelector('.js-gallery');
 const lightBox = document.querySelector('.lightbox');
 const lightBoxImage = document.querySelector('.lightbox__image');
 const closeBtn = document.querySelector('.lightbox__button');
-
+const closeOverlay = document.querySelector('.lightbox__overlay');
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
 galleryContainer.addEventListener('click', onClickGalleryCard);
-
 closeBtn.addEventListener('click', onCloseModal);
+closeOverlay.addEventListener('click', onCloseOverlay);
+
 
 function createGalleryMarkup(imagesArr) {
   return imagesArr
@@ -76,6 +77,10 @@ function onEscapeKeyPress(evt) {
   }
 }
 
+function onCloseOverlay(evt) {
+  if (evt.currentTarget === evt.target)
+    onCloseModal(evt)
+}
 // Дополнительно
 // Следующий функционал не обязателен при сдаче задания, но будет хорошей практикой по работе с событиями.
 // Закрытие модального окна по клику на div.lightbox__overlay.
