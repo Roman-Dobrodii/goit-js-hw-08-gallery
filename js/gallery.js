@@ -21,7 +21,7 @@ galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
 galleryContainer.addEventListener('click', onClickGalleryCard);
 closeBtn.addEventListener('click', onCloseModal);
-closeOverlay.addEventListener('click', onCloseOverlay);
+closeOverlay.addEventListener('click', onCloseModal);
 
 
 function createGalleryMarkup(imagesArr) {
@@ -59,10 +59,10 @@ function onClickGalleryCard(evt) {
 }
 
 function onCloseModal(evt) {
-  evt.preventDefault();
-  if (evt.target.nodeName === 'IMG') {
-    return;
-  }
+  // evt.preventDefault();
+  // if (evt.target.nodeName === 'IMG') {
+  //   return;
+  // }
 
   window.removeEventListener('keydown', onEscapeKeyPress)
 
@@ -77,12 +77,17 @@ function onEscapeKeyPress(evt) {
   }
 }
 
-function onCloseOverlay(evt) {
-  if (evt.currentTarget === evt.target)
-    onCloseModal(evt)
-}
+// function onCloseOverlay(evt) {
+//   if (evt.currentTarget === evt.target)
+//     onCloseModal(evt)
+// }
 // Дополнительно
 // Следующий функционал не обязателен при сдаче задания, но будет хорошей практикой по работе с событиями.
 // Закрытие модального окна по клику на div.lightbox__overlay.
 // Закрытие модального окна по нажатию клавиши ESC.
 // Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
+
+// https://prnt.sc/uxdth8 в этой проверке нет необходимости
+
+// https://prnt.sc/uxduk6 в этой проверке также нет необходимости ( как и в функции onCloseOverlay в целом -
+// вы можете использовать onCloseModal и для кнопки, и для оверлея)
